@@ -1,4 +1,4 @@
-#C Programs
+##C Programs
 
 This repository is a collection of C programs written by me. It is organized by these categories:
 
@@ -6,7 +6,7 @@ This repository is a collection of C programs written by me. It is organized by 
 - Sort Algorithms
 - Misc
 
-## Data Structure
+### Data Structure
 
 This directory has some data structure algorithms.
 
@@ -14,6 +14,6 @@ The most .c files can not be used simultaneosly because some structures are the 
 
 In none of the implementations is the descriptive data type used and, in the case of the lists, there is no insertion order. This is made only in the tail of the list.
 
-## Misc
+### Misc
 
 - Monte Carlo: Algorithms to calculate Pi value with Monte Carlo Technique with multi threads and mutual exclusion semaphore. **Work only on unix systems and this codes are written in pt-br.**
