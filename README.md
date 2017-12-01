@@ -1,4 +1,4 @@
-##C Programs
+# C Programs
 
 This repository is a collection of C programs written by me. It is organized by these categories:
 
@@ -17,3 +17,7 @@ In none of the implementations is the descriptive data type used and, in the cas
 ### Misc
 
 - Monte Carlo: Algorithms to calculate Pi value with Monte Carlo Technique with multi threads and mutual exclusion semaphore. **Work only on unix systems and this codes are written in pt-br.**
+
+#### License
+You can use this as you wish, as long as uou don't sell it.
+***Knowledge is power and must be free and accessible for all.***
