@@ -1,15 +1,7 @@
-/* UNIVERSIDADE CATOLICA DE BRASILIA - UCB"
- * DISCIPLINA: Sistemas Operacionais (2/2017)"
- * PROFESSOR: José Adalberto Gualeve"
- * ALUNO: Pedro Augusto Resende"
- *
- * CALCULO DE PI PELA TECNICA DE MONTE CARLO USANDO DUAS THREADS EXTRAS
- * COM CONTROLE DA CONDICAO DE CORRIDA POR SEMAFORO MUTEX
- *
- * NOTA: Reparei que a precisao com o mutex foi reduzida. Imagino que seja
- * pela forma com a qual eu fiz a divisao da quantidade de calculos para
- * cada thread
- *
+/* UNIVERSIDADE CATOLICA DE BRASILIA - UCB
+ * DISCIPLINA: Sistemas Operacionais (2/2017) [Operational Systems]
+ * PROFESSOR: José Adalberto Gualeve [Professor]
+ * ALUNO: Pedro Augusto Resende [Student]
  */
 
 #include <stdlib.h>
@@ -44,7 +36,7 @@ int main(int argc, char **argv) {
    double pi;
    int i;
    int erro;
-   
+
    if (pthread_mutex_init(&lock, NULL) != 0) {
       fprintf(stderr, "\nInicializacao do semaforo de exlusao mutua (mutex) falhou\n");
       return 1;
@@ -72,7 +64,7 @@ int main(int argc, char **argv) {
       pontosPorThread = totalDePontos/THREADS;
    else
       pontosPorThread = (totalDePontos + 1)/THREADS;
-   
+
    srand(time(NULL));
 
    // Cria as threads
@@ -131,7 +123,7 @@ void *ocorrencias(void *param) {
 
 		/* Aplicacao do teorema de pitagoras para o calculo do comprimento
 		 * da reta em relacao a origem
-		 * 
+		 *
 		 * h = sqrt(catetoOposto^2 + catetoAdjacente^2)
 		 *
 		 * Se o comprimento da reta for < 1, pertence a area do circulo.

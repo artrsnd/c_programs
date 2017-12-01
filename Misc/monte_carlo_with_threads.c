@@ -1,10 +1,7 @@
-/* UNIVERSIDADE CATOLICA DE BRASILIA - UCB"
- * DISCIPLINA: Sistemas Operacionais (2/2017)"
- * PROFESSOR: José Adalberto Gualeve"
- * ALUNO: Pedro Augusto Resende"
- *
- * CALCULO DE PI PELA TECNICA DE MONTE CARLO USANDO THREADS
- *
+/* UNIVERSIDADE CATOLICA DE BRASILIA - UCB
+ * DISCIPLINA: Sistemas Operacionais (2/2017) [Operational Systems]
+ * PROFESSOR: José Adalberto Gualeve [Professor]
+ * ALUNO: Pedro Augusto Resende [Student]
  */
 
 #include <stdlib.h>
@@ -13,10 +10,10 @@
 #include <time.h>
 #include <pthread.h>
 
-#define UNIX_UBUNTU
+#define LINUX
 
-#ifdef UNIX_UBUNTU
-  #include <stdio_ext.h> // library necessaria para a funcao __fpurge(*FILE), que limpa o buffer
+#ifdef LINUX
+  #include <stdio_ext.h>
 #endif
 
 // ===== Variaveis Globais =====
@@ -50,7 +47,7 @@ int main(int argc, char **argv) {
    printf("\nDigite a quantidade de pontos a ser gerados: ");
    __fpurge(stdin);
    scanf("%d", &totalDePontos);
-   
+
    srand(time(NULL));
 
    // Cria a thread
@@ -98,7 +95,7 @@ void *ocorrencias(void *param) {
 
 		/* Aplicacao do teorema de pitagoras para o calculo do comprimento
 		 * da reta em relacao a origem
-		 * 
+		 *
 		 * h = sqrt(catetoOposto^2 + catetoAdjacente^2)
 		 *
 		 * Se o comprimento da reta for < 1, pertence a area do circulo.
