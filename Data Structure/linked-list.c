@@ -1,7 +1,21 @@
+/* ---------------- DATA DEFINITIONS ---------------- */
+
+/*
+	Type of data to be stored in the list.
+	
+	The structure can be changed as you wish, but I
+	recommend the use of some Primary Key (PK) to locate the data.
+*/
 typedef struct {
 	int id;
 } data_t;
 
+/*
+	The structure that define the linked-list.
+	
+	Do not change that structure: every node in list need a pointer to next node
+	and a data_t to storage information.
+*/
 typedef struct node_t {
 	struct node_t *next;
 	data_t data;
@@ -9,10 +23,12 @@ typedef struct node_t {
 
 typedef node_t list_t;
 
+/* ---------------- FUNCTIONS ---------------- */
+
 /*
 	Insert into linked-list a data_t in the end.
 
-	param: node_t **list - the list where the data will be inserted
+	param: list_t **list - the list where the data will be inserted
 	param: data_t data - the data to be inserted into a node
 	return: in success, return 1; in failure, return 0
 */
@@ -43,14 +59,14 @@ int insert(list_t **list, data_t data) {
 /*
 	Remove a node from the list by his address
 
-	param: node_t **list - the list where the data will be removed
+	param: list_t **list - the list where the data will be removed
 	param: node_t *target - the target to be removed
 	return: in success, return 1; in failure, return 0
 */
 int remove_by_addr(list_t **list, node_t *target) {
 	node_t *p = NULL;
 
-	// Verify if the target is valid and list is valid
+	// Verify if the target and list is valid
 	if (target == NULL || (*list) == NULL)
 		return 0;
 
@@ -74,6 +90,13 @@ int remove_by_addr(list_t **list, node_t *target) {
 	free(target);
 }
 
+/*
+	Remove a node from the list by his primary key
+
+	param: list_t **list - the list where the data will be removed
+	param: int key - the target key to be removed
+	return: in success, return 1; in failure, return 0
+*/
 int remove_by_key(list_t **list, int key) {
 	node_t *p = NULL;
 	node_t *target = NULL;
@@ -107,7 +130,7 @@ int remove_by_key(list_t **list, int key) {
 /*
 	Clear the linked list of the memory
 
-	param: node_t **list - the list to be cleared
+	param: list_t **list - the list to be cleared
 	return: ---
 */
 void listclr(list_t **list) {
