@@ -11,9 +11,9 @@ typedef struct {
 } data_t;
 
 /*
-	The structure that define the linked-list.
+	The structure that define the stack.
 	
-	Do not change that structure: every node in list need a pointer to next node
+	Do not change that structure: every node in stack need a pointer to next node
 	and a data_t to storage information.
 */
 typedef struct node_t {
