@@ -1,10 +1,7 @@
 /* ---------------- DATA DEFINITIONS ---------------- */
 
 /*
-	Type of data to be stored in the list.
-	
-	The structure can be changed as you wish, but I
-	recommend the use of some Primary Key (PK) to locate the data.
+	Type of data to be stored in the stack.
 */
 typedef struct {
 	int id;
@@ -12,7 +9,7 @@ typedef struct {
 
 /*
 	The structure that define the stack.
-	
+
 	Do not change that structure: every node in stack need a pointer to next node
 	and a data_t to storage information.
 */
@@ -41,6 +38,7 @@ int push(stack_t **stack, data_t data) {
 	new_node->data = data;
 	new_node->next = (*stack);
 	(*stack) = new_node;
+
 	return 1;
 }
 
@@ -53,10 +51,12 @@ int push(stack_t **stack, data_t data) {
 int pop(stack_t **stack) {
 	node_t *p;
 
-	if (p == NULL)
+	if (*stack == NULL)
 		return 0;
 
 	p = *stack;
 	*stack = (*stack)->next;
 	free(p);
+
+	return 1;
 }
