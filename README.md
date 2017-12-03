@@ -1,6 +1,6 @@
 # C Programs
 
-This repository is a collection of C programs written by me. It is organized by these categories:
+This repository is a collection of C programs written by me. I decided to rewrite and/or update all codes that I found important and I will update this repository with time. That's organized by these categories:
 
 - Data Structure
 - Sort Algorithms
