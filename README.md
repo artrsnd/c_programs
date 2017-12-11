@@ -20,11 +20,11 @@ This directory has some data structure algorithms:
 - Binary Search Tree `[WIP]`
 
 ### Notes:
-- The most .c files cannot be used simultaneosly because some structures are the same, e.g. ```node_t``` and ```data_t```, used in _linked-lists_, _stack_ and _queue_ files. One way to make everything work is rename the structures in each file.
+- The most .c files cannot be used simultaneosly because some structures are the same, e.g. `node_t` and `data_t`, used in _linked-lists_, _stack_ and _queue_ files. One way to make everything work is rename the structures in each file.
 
-- In none of the implementations is the descriptive data type used and, **in the case of the lists, there is no insertion order**. This is made only in the tail of the list. This easly can be modified.
+- Only on ciruclar linked-list and circular doubly-linked-list has the implementations is the descriptive data type used and, **in the case of the lists, there is no insertion order**.
 
-- All data structures work from a pointer and must be initialized with the **NULL** value. e.g. ```list_t *list = NULL```.
+- All data structures work from a pointer and must be initialized with the **NULL** value. e.g. `list_t *list = NULL` because I have opted to not use a global variable for them. That's possibilite the use of _n_ structures at the same time.
 
 ## Sort Algorithms
 
@@ -32,7 +32,7 @@ For while, nothing.
 
 ## Misc
 
-- Monte Carlo `[WIP]`: Algorithms to calculate Pi value with Monte Carlo Technique with multi threads and mutual exclusion semaphore. **Work only on unix systems and this codes are written in pt-br.**
+- Monte Carlo `[WIP]`: Algorithms to calculate Pi value with Monte Carlo Technique with multi threads and mutual exclusion semaphore. **Work only on unix systems and, for while, this codes are written in pt-br.**
 
 ## License
 This library is under GNU General Public License (GPL) 3.
