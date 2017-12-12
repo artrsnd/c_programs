@@ -1,7 +1,5 @@
 /* ---------------- DATA DEFINITIONS ---------------- */
 
-/* [WARNING] THIS CODE IS WITHOUT TEST, FOR WHILE */
-
 /*
 	Type of data to be stored in the list.
 
@@ -23,7 +21,7 @@ typedef struct node_t {
 	data_t data;
 } node_t;
 
-typedef node_t list_t;
+typedef node_t clist_t;
 
 /* ---------------- FUNCTIONS ---------------- */
 
@@ -31,10 +29,10 @@ typedef node_t list_t;
 	Search some node by your primary key.
 	This function depends of the data_t data type.
 
-	param: list_t **list - the list where the node will be searched
+	param: clist_t **list - the list where the node will be searched
 	return: in success case, returns the address of the node; in failure, returns NULL
 */
-node_t* search(list_t *list, int key) {
+node_t* search(clist_t *list, int key) {
 	node_t *p = NULL;
 	node_t *head = list;
 
@@ -55,11 +53,11 @@ node_t* search(list_t *list, int key) {
 	If the list can accept unique values, call search() function to
 	verify if have a node with the PK value in the list.
 
-	param: list_t **list - the list where the data will be inserted
+	param: clist_t **list - the list where the data will be inserted
 	param: data_t data - the data to be inserted into a node
 	return: in success, return 1; in failure, return 0
 */
-int insert(list_t **list, data_t data) {
+int insert(clist_t **list, data_t data) {
 	node_t *new_node = malloc(sizeof(node_t));
 	node_t *p = NULL;
 
@@ -67,18 +65,21 @@ int insert(list_t **list, data_t data) {
 		return 0;
 
 	new_node->data = data;
-	new_node->next = *list;
 
-	if (*list == NULL)
+	if (*list == NULL) {
 		*list = new_node;
-	else {
+		p = *list;
+	} else {
 		p = (*list);
 
-		while(p->next != *list)
+		while(p->next != *list) {
 			p = p->next;
+		}
 
 		p->next = new_node;
 	}
+
+	new_node->next = *list;
 
 	return 1;
 }
@@ -86,11 +87,11 @@ int insert(list_t **list, data_t data) {
 /*
 	Remove a node from the list by his primary key
 
-	param: list_t **list - the list where the data will be removed
+	param: clist_t **list - the list where the data will be removed
 	param: int key - the target key to be removed
 	return: in success, return 1; in failure, return 0
 */
-int remove_by_key(list_t **list, int key) {
+int remove_by_key(clist_t **list, int key) {
 	node_t *p = NULL;
 	node_t *target = NULL;
 
@@ -98,16 +99,26 @@ int remove_by_key(list_t **list, int key) {
 	if ((*list) == NULL)
 		return 0;
 
+	// If the target is the HEAD
 	if ((*list)->data.id == key) {
 		target = (*list);
-		*list = target->next;
+		p = (*list)->next;
+
+		if (p == target)
+			*list = NULL;
+		else {
+			// Search the last node and pointer him to the new head
+			while (p->next != target)
+				p = p->next;
+
+			p->next = *list = target->next;
+		}
 	} else {
 		p = (*list);
 
 		while (p->next != *list && p->next->data.id != key)
 			p = p->next;
 
-		// The value doesn't belong to list
 		if (p->next == *list)
 			return 0;
 
@@ -123,20 +134,24 @@ int remove_by_key(list_t **list, int key) {
 /*
 	Clear the linked list of the memory
 
-	param: list_t **list - the list to be cleared
+	param: clist_t **list - the list to be cleared
 	return: ---
 */
-void listclr(list_t **list) {
+void listclr(clist_t **list) {
 	node_t *p, *q;
 	p = q = NULL;
 
-	p = (*list);
+	if (*list != NULL) {
+		p = (*list)->next;
 
-	while (p != NULL) {
-		q = p;
-		p = p->next;
-		free(q);
+		while (p != (*list)) {
+			q = p;
+			p = p->next;
+			free(q);
+		}
+
+		if (p == *list)
+			free(p);
+		(*list) = NULL;
 	}
-
-	(*list) = NULL;
 }
