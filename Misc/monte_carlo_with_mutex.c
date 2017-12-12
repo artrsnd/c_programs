@@ -1,33 +1,42 @@
-/* UNIVERSIDADE CATOLICA DE BRASILIA - UCB
- * DISCIPLINA: Sistemas Operacionais (2/2017) [Operational Systems]
- * PROFESSOR: José Adalberto Gualeve [Professor]
- * ALUNO: Pedro Augusto Resende [Student]
- */
+/* Author: Pedro Augusto Resende
 
+Note: Originally this was a work for the discipline of Operational Systems in 2/2017.
+
+Descripton:
+This is a simple implementation of the Monte Carlo Algorithm to estimate the Pi value.
+
+The Monte Carlo technique defines a circle of radius 1 in the cartesian plane starting from the origin.
+Then generates N random points with x, and belonging to the interval [-1, 1] and calculates pi by multiplying
+4 to the total points that are part of the area of the circle and dividing the result by the total of points generated.
+
+Work only on LINUX
+*/
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
 #include <time.h>
+// Linux C libraries
 #include <pthread.h>
-#include <stdlib.h>
-//#include <unistd.h>
+#include <stdio_ext.h>
 
-#define UNIX_UBUNTU
-#define THREADS 2
-
-#ifdef UNIX_UBUNTU
-  #include <stdio_ext.h> // library necessaria para a funcao __fpurge(*FILE), que limpa o buffer
-#endif
-
-// ===== Variaveis Globais =====
 unsigned int totalDePontos = 0;
 unsigned int pontosPorThread;
 int totalNoCirculo = 0;
 pthread_mutex_t lock;
 
-// ===== Indice de funcoes =====
+/*
+ * Generates a random number in a open interval. Needs to be used with
+ * srand(seed) function.
+ *
+ * Parameter:
+ *  double lower - lower value of the interval
+ *  double hiher - higher value of the interval
+ * Return: (double) the random number
+ */
 
-double randf(double menor,double maior);
+double randf(double lower,double higher){
+    return (rand()/(double)(RAND_MAX)) * abs(lower - higher) + lower;
+}
 void *ocorrencias(void *param);
 
 // MAIN
@@ -41,20 +50,6 @@ int main(int argc, char **argv) {
       fprintf(stderr, "\nInicializacao do semaforo de exlusao mutua (mutex) falhou\n");
       return 1;
    }
-
-   printf("================== CALCULO DE PI PELA TECNICA DE MONTE CARLO ==================\n"
-         "\nUNIVERSIDADE CATOLICA DE BRASILIA - UCB"
-         "\nDISCIPLINA: Sistemas Operacionais (2/2017)"
-         "\nPROFESSOR: José Adalberto Gualeve"
-         "\nALUNO: Pedro Augusto Resende"
-         "\n--------------------------------------------------------------------------------"
-         "\nResumo:\n"
-         "\nA tecnica de Monte Carlo define um circulo de raio 1 no plano cartesiano"
-         "\npartindo da origem, gera N pontos aleatorios com x,y pertencente ao intervalo"
-         "\n[-1, 1] e faz o calculo de pi multiplicando 4 ao total de pontos que fazem"
-         "\nparte da area do circulo e dividindo pelo total de pontos gerados.\n"
-         "\n\n>> pi = (4 * totalNoCirculo)/totalDePontos <<\n"
-         "\n===============================================================================\n");
 
    printf("\nDigite a quantidade de pontos a ser gerados: ");
    __fpurge(stdin);
@@ -90,19 +85,6 @@ int main(int argc, char **argv) {
    		"* Pontos no circulo: %d\n"
    		"* Valor de PI: %f\n",
    		totalDePontos, totalNoCirculo, pi);
-}
-
-/*
- * Gera um numero aleatorio entre um intervalo aberto definido.
- *
- * Parametros:
- *  double menor - valor inferior do intervalo
- *  double maior - valor superior do intervalo
- * Retorno: (double) valor gerado randomicamente
- */
-
-double randf(double menor,double maior){
-    return (rand()/(double)(RAND_MAX)) * abs(menor - maior) + menor;
 }
 
 /*

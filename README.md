@@ -38,9 +38,9 @@ For while, nothing.
 
 - [x] Finish the Queue and Stack Data Structure
 - [x] Finish the Simple Linked List and Simple Circular Linked List
-- [ ] Finish the Doubly Linked List and Doubly Circular Linked List
+- [ ] Finish the Doubly Linked List and Doubly Circular Linked List `[WIP]`
 - [ ] Finish the Binary Search Tree and AVL Tree
-- [ ] Optimize and make some updates in the Monte Carlo Algorithm, merging the implementation of _threads_ and _mutex_ into a single file.
+- [ ] Optimize and make some updates in the Monte Carlo Algorithm, merging the implementation of _threads_ and _mutex_ into a single file. `[WIP]`
 - [ ] Start developing of Sort Algorithms
 
 ## License
