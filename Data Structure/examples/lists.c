@@ -1,20 +1,29 @@
-/*  THIS EXAMPLE WORKS WITH ALL LISTS, WITH STACK AND QUEUE, BUT THE USED A CIRCULAR LIST TO EXPLIAN HOW IT REALLY WORKS. */
+/*
+  This example explains how you can use any lists in ../Data Structure dir.
+  I have decided to use the circular linked list as example, but the bhavior of the others
+  lists are very similar, like the stack and queue
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdio_ext.h>
 
-#include "circular-linked-list.c"
+#include "../circular-linked-list.c"
 
 int main(void) {
-  clist_t *list = NULL, *p;
+  /* First, create a variable with the list type you want ant assign the NULL value.
+    (To find out the correct type, check the source file you want to use.)*/
+  clist_t *list = NULL;
+  clist_t *p;
+  /* Create a data_t variable. You can modify the structure in the source file. */
   data_t d;
   char opc = '1';
 
   while (opc != '0') {
-    printf("[1] INSERT\n"
+    printf("\n[Circular Linked List]\n\n"
+        "[1] INSERT\n"
         "[2] DELETE\n"
-        "[3] LIST\n"
+        "[3] SHOW\n"
         "[0] EXIT\n\n"
         ">> ");
 
@@ -24,8 +33,9 @@ int main(void) {
     switch (opc) {
       case '1':
         printf("\n[INSERT] ID: ");
-        scanf("%d", &d.id);
+        scanf("%d", &d.id); // Assign the values to data_t type variable
 
+        // if you want unique values, call the search function before the insert function
         if (insert(&list, d))
           printf("%d successfully inserted.\n\n", d.id);
         else
@@ -42,7 +52,7 @@ int main(void) {
           printf("The value don't belongs to the list\n\n");
         break;
       case '3':
-        printf("\n[circular-linked-list]\n\n");
+        printf("\n== Showing the list ==\n\n");
         p = list;
 
         if (p != NULL) {
@@ -52,12 +62,13 @@ int main(void) {
             printf(" -> [%d]", p->data.id);
             p = p->next;
           }
-          printf("\n");
+          printf(" -> [HEAD]\n");
         } else {
           printf("The list is empty\n\n");
         }
         break;
       case '0':
+        // Always call the function listclr(clist_t*) before terminate
         listclr(&list);
         break;
     }
