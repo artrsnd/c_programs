@@ -2,6 +2,16 @@
 
 This repository is a collection of C programs written by me. I decided to rewrite and/or update all codes that I found important and I will update this repository with time.
 
+## Table of Contents
+- [Data Structure](#data-structure)
+- [Sort Algorithms](#sort-algorithms)
+- [Misc](#misc)
+  + [Monte Carlo Tecnique](#monte-carlo-tecnique)
+    - [Description](#description)
+    - [How it works](#how-it-works)
+    - [Compiling and running](#compiling-and-running)
+- [License](#license)
+
 ## Data Structure
 
 This directory has some data structure algorithms:
@@ -30,34 +40,24 @@ For while, nothing.
 
 ### Monte Carlo Tecnique
 
+**Original filename: _mc\_pi.c_**
+
 #### Description
 This is a simple implementation of the Monte Carlo Algorithm to estimate the Pi value, using multi-thread processing and mutual exclusion semaphore to avoid the _Race Condition_.
 
->Originally this was a work for the discipline of Operational Systems in 2/2017, but I have decided to update this code and share this here.
+>Originally this was a work for the discipline of Operational Systems in 2/2017, but I have decided to update this code and share.
 
 #### How it works
 The Monte Carlo technique defines a circle of radius 1 in the cartesian plane starting from the origin.
 Then have the need to generate N random points with x,y belonging to the interval [-1, 1] and calculates pi by multiplying 4 to the total points that are part of the area of the circle and dividing the result by the total of points generated.
 
+#### Compiling and running
+
 **[WARNING] This code only work on linux systems.**
 
-#### Compiling and running
-To compile the code, pass the arguments of `lpthread` and `lm` to GCC.
+**To compile** the code, pass the arguments of `lpthread` and `lm` to GCC. e.g. `gcc mc_pi.c -o out -lpthread -lm`
 
->`gcc mc_pi.c -o out -lpthread -lm`
-
-To run, just pass two arguments to the program: first, the quantity of threads you want use. second, the quantity of points each thread needs generate and count, e.g. `./out 10 100000`.
-
-## Task list
-
-- [x] Finish the Queue and Stack Data Structure
-- [x] Finish the Simple Linked List and Simple Circular Linked List
-- [ ] Finish the Doubly Linked List and Doubly Circular Linked List `[WIP]`
-- [ ] Finish the Binary Search Tree and AVL Tree
-- [x] Optimize and make some updates in the Monte Carlo Algorithm, merging the implementation of _threads_ and _mutex_ into a single file.
-- [ ] Start developing of Sort Algorithms
+**To run**, just pass two arguments to the program: first, the quantity of threads you want use. Second, the quantity of points each thread needs generate and count, i.e `./[bin] [threads] [points]`.
 
 ## License
 This library is under GNU General Public License (GPL) 3.
-
-**Knowledge is power.**
