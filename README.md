@@ -1,10 +1,6 @@
 # C Programs
 
-This repository is a collection of C programs written by me. I decided to rewrite and/or update all codes that I found important and I will update this repository with time. That's organized by these categories:
-
-- Data Structure
-- Sort Algorithms
-- Misc
+This repository is a collection of C programs written by me. I decided to rewrite and/or update all codes that I found important and I will update this repository with time.
 
 ## Data Structure
 
@@ -32,7 +28,25 @@ For while, nothing.
 
 ## Misc
 
-- Monte Carlo `[WIP]`: Algorithms to calculate Pi value with Monte Carlo Technique with multi threads and mutual exclusion semaphore. **Work only on unix systems and, for while, this codes are written in pt-br.**
+### Monte Carlo Tecnique
+
+#### Description
+This is a simple implementation of the Monte Carlo Algorithm to estimate the Pi value, using multi-thread processing and mutual exclusion semaphore to avoid the _Race Condition_.
+
+>Originally this was a work for the discipline of Operational Systems in 2/2017, but I have decided to update this code and share this here.
+
+#### How it works
+The Monte Carlo technique defines a circle of radius 1 in the cartesian plane starting from the origin.
+Then have the need to generate N random points with x,y belonging to the interval [-1, 1] and calculates pi by multiplying 4 to the total points that are part of the area of the circle and dividing the result by the total of points generated.
+
+**[WARNING] This code only work on linux systems.**
+
+#### Compiling and running
+To compile the code, pass the arguments of `lpthread` and `lm` to GCC.
+
+>`gcc mc_pi.c -o out -lpthread -lm`
+
+To run, just pass two arguments to the program: first, the quantity of threads you want use. second, the quantity of points each thread needs generate and count, e.g. `./out 10 100000`.
 
 ## Task list
 
@@ -40,10 +54,10 @@ For while, nothing.
 - [x] Finish the Simple Linked List and Simple Circular Linked List
 - [ ] Finish the Doubly Linked List and Doubly Circular Linked List `[WIP]`
 - [ ] Finish the Binary Search Tree and AVL Tree
-- [ ] Optimize and make some updates in the Monte Carlo Algorithm, merging the implementation of _threads_ and _mutex_ into a single file. `[WIP]`
+- [x] Optimize and make some updates in the Monte Carlo Algorithm, merging the implementation of _threads_ and _mutex_ into a single file.
 - [ ] Start developing of Sort Algorithms
 
 ## License
 This library is under GNU General Public License (GPL) 3.
 
-**Knowledge is power and the power is for everyone.**
+**Knowledge is power.**
