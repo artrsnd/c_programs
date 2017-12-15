@@ -1,8 +1,6 @@
 /* Author: Pedro Augusto Resende
 
 Before proceed, please read the README.md file for more information.
-
-Note: Originally this was a work for the discipline of Operational Systems in 2/2017.
 */
 #include <stdlib.h>
 #include <stdio.h>
@@ -83,7 +81,7 @@ int main(int argc, char **argv) {
  */
 
 double randf(double lower, double higher) {
-    return (rand()/(double)(RAND_MAX)) * abs(lower - higher) + lower;
+      return (rand()/(double)(RAND_MAX)) * abs(lower - higher) + lower;
 }
 
 /*
@@ -95,27 +93,27 @@ double randf(double lower, double higher) {
  * Return: ---
 */
 void *occurrences(void *param) {
-	unsigned int i;
-	double x, y;
-  unsigned int limit = gen_points/qt_threads;
+      unsigned int i;
+      double x, y;
+      unsigned int limit = gen_points/qt_threads;
 
-	for (i = 0; i < limit; i++) {
-		x = randf(-1.000001, 1.000001);
-		y = randf(-1.000001, 1.000001);
+      for (i = 0; i < limit; i++) {
+            x = randf(-1.000001, 1.000001);
+            y = randf(-1.000001, 1.000001);
 
-    /* Application of the Pythagorean theorem for the calculation of the length
-     * of the line with respect to the origin
-     *
-     * h = sqrt(opposite_leg^2 + adjacent_leg^2)
-     *
-     * if the lenght < 1, the point belongs to the circle.
-		 */
-		if (sqrt((x * x) + (y * y)) < 1) {
-         pthread_mutex_lock(&lock);
-         total_points_circle++;
-         pthread_mutex_unlock(&lock);
+      /* Application of the Pythagorean theorem for the calculation of the length
+	* of the line with respect to the origin
+	*
+	* h = sqrt(opposite_leg^2 + adjacent_leg^2)
+	*
+	* if the lenght < 1, the point belongs to the circle.
+      */
+            if (sqrt((x * x) + (y * y)) < 1) {
+               pthread_mutex_lock(&lock);
+               total_points_circle++;
+               pthread_mutex_unlock(&lock);
+            }
       }
-	}
 
-	pthread_exit(0);
+      pthread_exit(0);
 }
